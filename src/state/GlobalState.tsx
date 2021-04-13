@@ -7,7 +7,6 @@ import React, {
     useMemo,
     useState
 } from "react";
-import { mapData } from "../data/map-data";
 import { MapMarker, State } from "../types";
 
 const initialState: State = {
@@ -30,8 +29,10 @@ export const GlobalStore: FC = (props) => {
     const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
 
     useEffect(() => {
-        //http call.
-        setMapMarkers(mapData);
+        fetch(process.env.REACT_APP_API_URL)
+            .then((response) => response.json())
+            .then((data) => setMapMarkers(data))
+            .catch(err => console.error("ERROR: ", err))
     }, []);
 
     const selectMarker = useCallback(
