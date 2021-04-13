@@ -3,25 +3,24 @@ import React, {
     FC,
     useCallback,
     useContext,
+    useEffect,
     useMemo,
     useState
 } from "react";
+import { mapData } from "../data/map-data";
 import { MapMarker, State } from "../types";
 
 const initialState: State = {
     mapMarkers: [],
-    selected: false,
     selectedMarkerId: null,
     selectedMarker: null,
     selectMarker: () => {},
-    deSelectAll: () => {},
-    setMarkers: () => {}
+    deSelectAll: () => {}
 };
 
 const GlobalContext = createContext<State>(initialState);
 
 export const GlobalStore: FC = (props) => {
-    const [selected, setSelected] = useState(false);
     const [selectedMarkerId, setselectedMarkerId] = useState<number | null>(
         null
     );
@@ -30,11 +29,14 @@ export const GlobalStore: FC = (props) => {
     );
     const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
 
+    useEffect(() => {
+        //http call would be here.
+        setMapMarkers(mapData);
+    }, []);
+
     const selectMarker = useCallback(
         (id: number) => {
-            setSelected(true);
-
-            setselectedMarker({ ...mapMarkers[id] });
+            setselectedMarker(mapMarkers[id]);
 
             setselectedMarkerId(id);
         },
@@ -42,31 +44,24 @@ export const GlobalStore: FC = (props) => {
     );
 
     const deSelectAll = useCallback(() => {
-        setSelected(false);
         setselectedMarkerId(null);
+        setselectedMarker(null);
     }, []);
-
-    const setMarkers = (mapMarkers: MapMarker[]) => {
-        setMapMarkers([...mapMarkers]);
-    };
 
     const initialStateMemoized = useMemo<State>(
         () => ({
             mapMarkers,
-            selected,
             selectedMarkerId,
             selectedMarker,
             selectMarker,
-            deSelectAll,
-            setMarkers
+            deSelectAll
         }),
         [
             mapMarkers,
-            selected,
             selectedMarkerId,
+            selectedMarker,
             selectMarker,
-            deSelectAll,
-            selectedMarker
+            deSelectAll
         ]
     );
 

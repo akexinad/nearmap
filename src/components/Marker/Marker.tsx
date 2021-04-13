@@ -5,16 +5,17 @@ export type MarkerProps = {
     id: number;
     x: number;
     y: number;
-    clicked: (id: number) => void;
 };
 
-export const Marker: FC<MarkerProps> = ({ id, x, y, clicked }) => {
+export const Marker: FC<MarkerProps> = (props) => {
+    const { id, x, y } = props;
+
     const store = useGlobalStore();
 
     return (
         <img
             src={
-                store.selected && store.selectedMarkerId === id
+                store.selectedMarkerId === id
                     ? "./marker-selected.png"
                     : "./marker.png"
             }
@@ -24,11 +25,11 @@ export const Marker: FC<MarkerProps> = ({ id, x, y, clicked }) => {
                 left: x,
                 top: y,
                 cursor: "pointer",
-                zIndex: 100
+                zIndex: 10
             }}
             onClick={(e) => {
                 e.stopPropagation();
-                clicked(id);
+                store.selectMarker(id);
             }}
         />
     );

@@ -26,7 +26,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
         >
             <h3
                 style={{
-                    margin: "0 0 10px 0",
+                    margin: "0 0 15px 0",
                     textAlign: "center",
                     color: "black",
                     fontSize: "25px"
@@ -40,8 +40,8 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                     style={{
                         fontSize: "14px",
                         color: "black",
-                        textAlign: "start"
-                        // AlignSelf: "flex-start"
+                        textAlign: "start",
+                        marginBottom: "10px"
                     }}
                 >
                     <strong>{capitalize(key)}: </strong>
