@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { useGlobalStore } from "../../state/GlobalState";
-import { Markers } from "../Markers/Markers";
-import { Modal } from "../Modal/Modal";
+import { useGlobalStore } from "../state/GlobalState";
+import { Markers } from "./Markers";
+import { Modal } from "./Modal";
 
 export const Map: FC = () => {
     const store = useGlobalStore();

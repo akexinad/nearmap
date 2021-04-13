@@ -1,6 +1,6 @@
 import React, { memo, NamedExoticComponent } from "react";
-import { MapMarker } from "../../types";
-import { Marker } from "../Marker/Marker";
+import { MapMarker } from "../types";
+import { Marker } from "./Marker";
 
 type MarkerProps = {
     markers: MapMarker[];

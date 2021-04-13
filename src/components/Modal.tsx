@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { MapMarker } from "../../types";
+import { MapMarker } from "../types";
 
 import { capitalize } from "lodash";
 

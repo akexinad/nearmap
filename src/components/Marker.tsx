@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useGlobalStore } from "../../state/GlobalState";
+import { useGlobalStore } from "../state/GlobalState";
 
 export type MarkerProps = {
     id: number;
