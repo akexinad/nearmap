@@ -30,7 +30,7 @@ export const GlobalStore: FC = (props) => {
     const [mapMarkers, setMapMarkers] = useState<MapMarker[]>([]);
 
     useEffect(() => {
-        //http call would be here.
+        //http call.
         setMapMarkers(mapData);
     }, []);
 
@@ -38,6 +38,12 @@ export const GlobalStore: FC = (props) => {
         (id: number) => {
             setselectedMarker(mapMarkers[id]);
 
+            /**
+             * Ideally the data would have a property of
+             * id so this logic would be unnecessary, but
+             * for the purposes of this test we will
+             * just use it's index
+             */
             setselectedMarkerId(id);
         },
         [mapMarkers]
