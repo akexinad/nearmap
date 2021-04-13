@@ -38,14 +38,41 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                 <div
                     key={index}
                     style={{
+                        display: "flex",
+                        flexDirection: "row",
                         fontSize: "14px",
                         color: "black",
                         textAlign: "start",
                         marginBottom: "10px"
                     }}
                 >
-                    <strong>{capitalize(key)}: </strong>
-                    {value}
+                    <div
+                        style={{
+                            width: "90px",
+                            margin: 0
+                        }}
+                    >
+                        <p
+                            style={{
+                                margin: "0 0 10px 0"
+                            }}
+                        >
+                            <strong>{capitalize(key)}</strong>
+                        </p>
+                    </div>
+                    <div
+                        style={{
+                            width: "100px"
+                        }}
+                    >
+                        <p
+                            style={{
+                                margin: 0
+                            }}
+                        >
+                            {value}
+                        </p>
+                    </div>
                 </div>
             ))}
         </div>
