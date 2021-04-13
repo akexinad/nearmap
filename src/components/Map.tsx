@@ -17,6 +17,7 @@ export const Map: FC = () => {
                     zIndex: 1
                 }}
                 onClick={() => store.deSelectAll()}
+                id={"map"}
             >
                 <Markers markers={store.mapMarkers} />
                 {store.selectedMarker ? (

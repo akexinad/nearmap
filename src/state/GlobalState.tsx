@@ -17,7 +17,7 @@ const initialState: State = {
     deSelectAll: () => {}
 };
 
-const GlobalContext = createContext<State>(initialState);
+export const GlobalContext = createContext<State>(initialState);
 
 export const GlobalStore: FC = (props) => {
     const [selectedMarkerId, setselectedMarkerId] = useState<number | null>(
