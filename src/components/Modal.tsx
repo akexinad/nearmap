@@ -23,6 +23,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                 borderRadius: "5px"
             }}
             onClick={(e) => e.stopPropagation()}
+            id="container"
         >
             <h3
                 style={{
@@ -34,6 +35,11 @@ export const Modal: FC<ModalProps> = ({ details }) => {
             >
                 Details
             </h3>
+            {/* 
+                The logic below could also be further abstracted 
+                in its own component (ex. ModalDetails) but left
+                it in the same component in the interests of time.
+             */}
             {Object.entries(details).map(([key, value], index) => (
                 <div
                     key={index}
@@ -69,6 +75,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                             style={{
                                 margin: 0
                             }}
+                            id="value"
                         >
                             {capitalize(value?.toString())}
                         </p>

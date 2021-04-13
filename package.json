@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "serve": "json-server --watch src/data/map-data.json --port 8080",
+    "serve": "json-server --watch src/data/map-data.json --port 3001",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

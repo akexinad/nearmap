@@ -5,8 +5,9 @@ import { GlobalContext } from "../state/GlobalState";
 import { State } from "../types";
 
 let wrapper: ReactWrapper;
+let MockStore: FC;
 
-const mockState: State = {
+const mockStateWithSelectedMarker: State = {
     mapMarkers: [],
     selectedMarkerId: null,
     selectedMarker: {
@@ -17,29 +18,39 @@ const mockState: State = {
         authority: "constable",
         numGuards: 5,
         position: [83, 65]
-    }, 
-    // selectedMarker: null,
+    },
     selectMarker: () => {},
     deSelectAll: () => {}
 };
 
-const MockStore: FC = (props) => (
-    <GlobalContext.Provider value={mockState} {...props} />
-);
+const mockStateNOSelectedMarker: State = {
+    mapMarkers: [],
+    selectedMarkerId: null,
+    selectedMarker: null,
+    selectMarker: () => {},
+    deSelectAll: () => {}
+};
 
-beforeEach(() => {
-    wrapper = mount(
-        <MockStore>
-            <Map />
-        </MockStore>
-    );
-});
+describe("Map component with modal", () => {
+    beforeEach(() => {
+        MockStore = (props) => (
+            <GlobalContext.Provider
+                value={mockStateWithSelectedMarker}
+                {...props}
+            />
+        );
 
-afterEach(() => {
-    wrapper.unmount();
-});
+        wrapper = mount(
+            <MockStore>
+                <Map />
+            </MockStore>
+        );
+    });
 
-describe("Map component", () => {
+    afterEach(() => {
+        wrapper.unmount();
+    });
+
     it("should contain a div", () => {
         expect(wrapper.find("#map")).toHaveLength(1);
     });
@@ -57,5 +68,45 @@ describe("Map component", () => {
 
     it("should display the modal when a maker has been selected", () => {
         expect(wrapper.find("Modal")).toHaveLength(1);
+    });
+});
+
+describe("Map component with no modal", () => {
+    beforeEach(() => {
+        MockStore = (props) => (
+            <GlobalContext.Provider
+                value={mockStateNOSelectedMarker}
+                {...props}
+            />
+        );
+
+        wrapper = mount(
+            <MockStore>
+                <Map />
+            </MockStore>
+        );
+    });
+
+    afterEach(() => {
+        wrapper.unmount();
+    });
+
+    it("should contain a div", () => {
+        expect(wrapper.find("#map")).toHaveLength(1);
+    });
+
+    it("should contain a Markers component", () => {
+        const props = wrapper.find("Memo()").props() as {
+            markers: [];
+            foo: any;
+        };
+
+        expect(wrapper.find("Memo()")).toHaveLength(1);
+        expect(props.markers).toBeTruthy();
+        expect(props.foo).toBeFalsy();
+    });
+
+    it("should NOT display the modal when a maker has been selected", () => {
+        expect(wrapper.find("Modal")).toHaveLength(0);
     });
 });

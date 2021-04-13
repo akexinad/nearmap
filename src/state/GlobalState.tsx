@@ -32,7 +32,7 @@ export const GlobalStore: FC = (props) => {
         fetch(process.env.REACT_APP_API_URL)
             .then((response) => response.json())
             .then((data) => setMapMarkers(data))
-            .catch(err => console.error("ERROR: ", err))
+            .catch((err) => console.error("ERROR: ", err));
     }, []);
 
     const selectMarker = useCallback(
