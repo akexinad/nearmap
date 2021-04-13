@@ -15,7 +15,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                 display: "flex",
                 flexDirection: "column",
                 padding: "10px",
-                height: 300,
+                height: 270,
                 width: 180,
                 backgroundColor: "white",
                 top: "15px",
@@ -27,7 +27,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
             <h3
                 style={{
                     margin: "0 0 15px 0",
-                    textAlign: "center",
+                    textAlign: "left",
                     color: "black",
                     fontSize: "25px"
                 }}
@@ -54,7 +54,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                     >
                         <p
                             style={{
-                                margin: "0 0 10px 0"
+                                margin: 0
                             }}
                         >
                             <strong>{capitalize(key)}</strong>
@@ -70,7 +70,7 @@ export const Modal: FC<ModalProps> = ({ details }) => {
                                 margin: 0
                             }}
                         >
-                            {value}
+                            {capitalize(value?.toString())}
                         </p>
                     </div>
                 </div>
