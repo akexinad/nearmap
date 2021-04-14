@@ -35,6 +35,11 @@ export const GlobalStore: FC = (props) => {
             .catch((err) => console.error("ERROR: ", err));
     }, []);
 
+    /**
+     * The functions below could be made a lot more pure
+     * in order to reduce complexity and dependency on the
+     * useCallback hook.
+     */
     const selectMarker = useCallback(
         (id: number) => {
             setselectedMarker(mapMarkers[id]);
